@@ -27,6 +27,12 @@
 extern "C" {
 #endif
 
+#if __clang__
+// clang is very picky about the use of "register"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-register"
+#endif
+
 #include "STM32F4xx_DSP_StdPeriph_Lib_V1.4.0/Libraries/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
 #include "STM32F4xx_DSP_StdPeriph_Lib_V1.4.0/Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_rcc.h"
 #include "STM32F4xx_DSP_StdPeriph_Lib_V1.4.0/Libraries/STM32F4xx_StdPeriph_Driver/inc/stm32f4xx_gpio.h"
@@ -55,6 +61,11 @@ extern "C" {
 #include "usbd_conf.h"
 #endif
 
+#if __clang__
+#pragma clang diagnostic pop
+#endif    
+
+    
 #include "hal.h"
 
 #if defined(__cplusplus) && !defined(SIMU)
