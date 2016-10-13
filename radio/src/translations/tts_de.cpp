@@ -146,18 +146,15 @@ I18N_PLAY_FUNCTION(de, playNumber, getvalue_t number, uint8_t unit, uint8_t att)
       PUSH_NUMBER_PROMPT(DE_PROMPT_TAUSEND);
     }
     number %= 1000;
-    if (number == 0)
-      number = -1;
   }
   if (number >= 100) {
     if (number >= 200)
       PUSH_NUMBER_PROMPT(DE_PROMPT_NULL + number/100);
     PUSH_NUMBER_PROMPT(DE_PROMPT_HUNDERT);
     number %= 100;
-    if (number == 0)
-      number = -1;
   }
-  PUSH_NUMBER_PROMPT(DE_PROMPT_NULL+number);
+  if (number > 0)
+    PUSH_NUMBER_PROMPT(DE_PROMPT_NULL+number);
 
   if (unit) {
     DE_PUSH_UNIT_PROMPT(unit);
